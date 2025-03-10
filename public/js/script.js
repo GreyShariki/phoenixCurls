@@ -11,15 +11,25 @@ const registrationShow = () => {
 };
 
 const isChange = () => {
+  const password = document.getElementById("password");
+  const repPassword = document.getElementById("repPassword");
   const button = document.getElementById("regButton");
   const inputs = document.getElementsByClassName("reg");
   let allFilled = true;
+  let passCorrect = true;
   for (let input of inputs) {
     if (!input.value.trim()) {
       allFilled = false;
+      break;
     }
   }
-  if (allFilled) {
+  if (password.value.trim() != repPassword.value.trim()) {
+    passCorrect = false;
+  }
+  if (password.value.length < 5) {
+    passCorrect = false;
+  }
+  if (allFilled && passCorrect) {
     button.classList.remove("disabled");
   } else {
     button.classList.add("disabled");
