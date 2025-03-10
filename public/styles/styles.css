@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+@font-face {
+  font-family: "baymax";
+  src: url(./font/Baymax.otf);
+}
+body {
+  background-color: #cce0f2 !important;
+  width: 100%;
+}
+.text-main {
+  color: #7d7d7d;
+  font-size: 24px;
+  font-family: "Playfair";
+}
+.navbrand {
+  border-right: 1px solid #7d7d7d;
+}
+.navbar {
+  border-bottom: 1px solid #7d7d7d;
+}
+header {
+  height: 450px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/public/img/curls.png");
+}
+footer {
+  border-top: 1px solid #7d7d7d;
+}
+input {
+  background-color: #ccdff1 !important;
+}
+.btn-primary {
+  background-color: #3a5880 !important;
+  border: #3a5880 !important;
+}
+legend {
+  font-family: "Playfair";
+}
