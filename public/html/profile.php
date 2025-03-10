@@ -47,7 +47,7 @@
           <ul class="navbar-nav justify-content-between me-auto w-100">
             <li class="nav-item d-flex align-items-center">
               <a
-                class="nav-link text-main m-0 active"
+                class="nav-link text-main m-0"
                 aria-current="page"
                 href="/index.html"
                 >Главная</a
@@ -56,21 +56,19 @@
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link text-main m-0"
-                href="public/html/appointment.php"
+                href="public/html/appointment.html"
                 >Записаться</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="public/html/galery.html"
+              <a class="nav-link text-main m-0 active" href="./galery.html"
                 >Галерея</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="public/html/profile.html"
-                >Профиль</a
-              >
+              <a class="nav-link text-main m-0" href="./auth.php">Профиль</a>
             </li>
-            <form class="d-flex align-items-center">
+            <form class="d-flex d-flex align-items-center">
               <input
                 class="form-control me-2"
                 type="search"
@@ -86,31 +84,43 @@
       </div>
     </nav>
     <header><p class="text-main p-3">Curls lives matter</p></header>
-    <main>
-      <div class="container row mt-5">
-        <div class="col-md-5 mb-5 ps-5 p-0 row align-items-center">
-          <h2 class="px-0">Почему выбирают нас?</h2>
-          <ul class="list-group mw-100 px-0">
-            <li class="list-group-item h4 bg-transparent border-0">
-              Мастера-волшебники: Наши стилисты — настоящие маги красоты. Они
-              знают, как подчеркнуть вашу индивидуальность.
-            </li>
-            <li class="list-group-item h4 bg-transparent border-0">
-              Ледяная точность: Каждая стрижка, каждый цвет — это искусство,
-              доведенное до совершенства.
-            </li>
-            <li class="list-group-item h4 bg-transparent border-0">
-              Комфорт и забота: Мы создаем атмосферу, где вы чувствуете себя как
-              дома.
-            </li>
-            <li class="list-group-item h4 bg-transparent border-0">
-              Современные технологии: Используем только лучшие средства и
-              инструменты, чтобы ваш образ был безупречным.
-            </li>
-          </ul>
+    <main class="p-5">
+   
+      <div class = "container row">
+      <h5>Ваши записи</h5>
+        <div class= "col-6 col-md-2">
+            <div class = "list-group">
+                    <button type = "button" class = "list-group-item list-group-item-action">Предстоящие</button>
+                    <button type = "button" class = "list-group-item list-group-item-action">Прошедшие</button>
+            </div>
         </div>
-        <div class="col-md-5 d-flex align-items-end">
-          <img class="mb-0 me-0 w-100" src="/public/img/women.webp" alt="" />
+        <div class = "col-10 col-md-8">
+            <table class = "table table-light table-striped w-100">
+                <thead>
+                    <tr>
+                        <th class = "h6" scope = "col">Дата</th>
+                        <th class = "h6" scope = "col">Время</th>
+                        <th class = "h6" scope = "col">Тип услуги</th>
+                        <th class = "h6" scope = "col">Специалист</th>
+                        <th class = "h6" scope = "col">Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    require_once("../../server/db.php");
+                    $sql = "SELECT * from applications";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()){
+                        echo "<tr><td>".$row["date"]."</td>
+                        <td>".$row["time"]."</td>
+                        <td>".$row["type_of_service"]."</td>
+                        <td>".$row["specialist"]."</td>
+                        <td>".$row["price"]." р.</td></tr>";
+
+                    };
+                    ?>
+                </tbody>
+            </table>
         </div>
       </div>
     </main>

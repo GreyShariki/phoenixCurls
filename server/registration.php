@@ -5,13 +5,11 @@ $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $password = $_POST["password"];
 $repPassword = $_POST["repPassword"];
-
-if($repPassword === $password && !isset($_POST)){
     $sql = "INSERT INTO users (email, fname, lname, password, role) VALUES ('$email','$fname','$lname','$password','user')";
     if($conn->query($sql)){
-        echo "Данные успешно добавлены";
+        session_start();
+        header("location:http://dima2005/public/html/profile.php");
     } else{
         echo "Ошибка";
     }
-};
 ?>

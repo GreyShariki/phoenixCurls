@@ -41,3 +41,14 @@ input {
 legend {
   font-family: "Playfair";
 }
+.btn-success {
+  background-color: #46803a !important;
+  border: #46803a !important;
+}
+.btn-danger {
+  background-color: #7e3232 !important;
+  border: #7e3232 !important;
+}
+.form-select {
+  background-color: #ccdff1 !important;
+}

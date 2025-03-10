@@ -47,7 +47,7 @@
           <ul class="navbar-nav justify-content-between me-auto w-100">
             <li class="nav-item d-flex align-items-center">
               <a
-                class="nav-link text-main m-0 active"
+                class="nav-link text-main m-0"
                 aria-current="page"
                 href="/index.html"
                 >Главная</a
@@ -56,21 +56,21 @@
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link text-main m-0"
-                href="public/html/appointment.php"
+                href="public/html/appointment.html"
                 >Записаться</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="public/html/galery.html"
-                >Галерея</a
-              >
+              <a class="nav-link text-main m-0" href="./galery.html">Галерея</a>
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="public/html/profile.html"
+              <a
+                class="nav-link text-main m-0 active"
+                href="public/html/profile.html"
                 >Профиль</a
               >
             </li>
-            <form class="d-flex align-items-center">
+            <form class="d-flex d-flex align-items-center">
               <input
                 class="form-control me-2"
                 type="search"
@@ -86,32 +86,74 @@
       </div>
     </nav>
     <header><p class="text-main p-3">Curls lives matter</p></header>
-    <main>
-      <div class="container row mt-5">
-        <div class="col-md-5 mb-5 ps-5 p-0 row align-items-center">
-          <h2 class="px-0">Почему выбирают нас?</h2>
-          <ul class="list-group mw-100 px-0">
-            <li class="list-group-item h4 bg-transparent border-0">
-              Мастера-волшебники: Наши стилисты — настоящие маги красоты. Они
-              знают, как подчеркнуть вашу индивидуальность.
-            </li>
-            <li class="list-group-item h4 bg-transparent border-0">
-              Ледяная точность: Каждая стрижка, каждый цвет — это искусство,
-              доведенное до совершенства.
-            </li>
-            <li class="list-group-item h4 bg-transparent border-0">
-              Комфорт и забота: Мы создаем атмосферу, где вы чувствуете себя как
-              дома.
-            </li>
-            <li class="list-group-item h4 bg-transparent border-0">
-              Современные технологии: Используем только лучшие средства и
-              инструменты, чтобы ваш образ был безупречным.
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-5 d-flex align-items-end">
-          <img class="mb-0 me-0 w-100" src="/public/img/women.webp" alt="" />
-        </div>
+    <main class="p-5">
+      <div class="container-fluid row justify-content-center">
+        <form
+          class="bg-light col-4 p-3 row justify-content-center d-block"
+          method="post"
+          action="../../server/appointment.php"
+          id="register"
+        >
+          <legend>Запись к специалисту</legend>
+          <div class="mb-4">
+            <input
+              name="number"
+              class="form-control reg"
+              type="email"
+              placeholder="Номер телефона"
+            />
+          </div>
+          <div class="mb-4">
+            <select class = 'form-select' name="specialist" id="">
+            <option selected>Выберете специалиста</option>
+              <?php 
+                require_once("../../server/db.php");
+                $sql = "SELECT * from users where role = 'specialist'";
+                $res = $conn->query($sql);
+                while ($row = $res->fetch_assoc()){
+                  echo "<option value = ".$row['id'].">".$row['fname'],' ', $row['lname']."</>";
+                };
+              ?>
+            </select>
+          </div>
+          <div class="mb-4">
+          <div class="mb-4">Цена: <span id="priceDisplay">0</span> руб.</div>
+
+<select class="form-select" name="service" id="serviceSelect">
+  <option selected>Услуга</option>
+  <?php 
+  require_once("../../server/db.php");
+  $sql = "SELECT * FROM services";
+  $res = $conn->query($sql);
+  while ($row = $res->fetch_assoc()) {
+    echo '<option value="' . $row["id"] . '" data-price="' . $row["price"] . '">' . $row["title"] . '</option>';
+  }
+  ?>
+</select>
+          </div>
+          <div class="mb-4">
+            <input
+              name="date"
+              id="date"
+              class="form-control reg"
+              type="date"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              name="time"
+              id="time"
+              class="form-control reg"
+              type="time"
+            />
+          </div>
+          <div class="mb-4">
+            <button type = "button" id="regButton" class="w-100 btn btn-primary p-2">
+              Записаться
+            </button>
+          </div>
+          <div></div>
+        </form>
       </div>
     </main>
     <footer
@@ -149,4 +191,5 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"
   ></script>
+  <script src="../js/script.js"></script>
 </html>
