@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -18,7 +21,7 @@
     <title>PhoenixCurls</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg p-0 navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg p-0 navbar-light bg-light">
       <div class="container-fluid mb-0">
         <a
           class="navbar-brand navbrand align-items-center d-flex pb-0 mb-0 pe-5"
@@ -49,14 +52,14 @@
               <a
                 class="nav-link text-main m-0"
                 aria-current="page"
-                href="/index.html"
+                href="../../index.html"
                 >Главная</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link text-main m-0"
-                href="public/html/appointment.html"
+                href="./appointment.php"
                 >Записаться</a
               >
             </li>
@@ -66,7 +69,7 @@
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.php">Профиль</a>
+              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input
@@ -92,6 +95,7 @@
             <div class = "list-group">
                     <button type = "button" class = "list-group-item list-group-item-action">Предстоящие</button>
                     <button type = "button" class = "list-group-item list-group-item-action">Прошедшие</button>
+                    <a href = "../../server/destroy.php" class = "list-group-item list-group-item-action">Выйти</a>
             </div>
         </div>
         <div class = "col-10 col-md-8">

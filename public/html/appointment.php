@@ -1,3 +1,8 @@
+<?php
+if(!$_SESSION['user_id']){
+  header("location:http://dima2005/public/html/auth.html");
+};
+?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -18,7 +23,7 @@
     <title>PhoenixCurls</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg p-0 navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg p-0 navbar-light bg-light">
       <div class="container-fluid mb-0">
         <a
           class="navbar-brand navbrand align-items-center d-flex pb-0 mb-0 pe-5"
@@ -49,26 +54,24 @@
               <a
                 class="nav-link text-main m-0"
                 aria-current="page"
-                href="/index.html"
+                href="../../index.html"
                 >Главная</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link text-main m-0"
-                href="public/html/appointment.html"
+                href="./appointment.php"
                 >Записаться</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./galery.html">Галерея</a>
+              <a class="nav-link text-main m-0 active" href="./galery.html"
+                >Галерея</a
+              >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a
-                class="nav-link text-main m-0 active"
-                href="public/html/profile.html"
-                >Профиль</a
-              >
+              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input
@@ -99,26 +102,26 @@
             <input
               name="number"
               class="form-control reg"
-              type="email"
+              type="text"
               placeholder="Номер телефона"
             />
           </div>
           <div class="mb-4">
             <select class = 'form-select' name="specialist" id="">
-            <option selected>Выберете специалиста</option>
+            <option selected>Выберите специалиста</option>
               <?php 
                 require_once("../../server/db.php");
                 $sql = "SELECT * from users where role = 'specialist'";
                 $res = $conn->query($sql);
                 while ($row = $res->fetch_assoc()){
-                  echo "<option value = ".$row['id'].">".$row['fname'],' ', $row['lname']."</>";
+                  echo "<option value = ".$row['fname'],' ', $row['lname'].">".$row['fname'],' ', $row['lname']."</>";
                 };
               ?>
             </select>
           </div>
           <div class="mb-4">
           <div class="mb-4">Цена: <span id="priceDisplay">0</span> руб.</div>
-
+          <input type="hidden" id="hiddenPrice" name="price" value="0">
 <select class="form-select" name="service" id="serviceSelect">
   <option selected>Услуга</option>
   <?php 
@@ -148,7 +151,7 @@
             />
           </div>
           <div class="mb-4">
-            <button type = "button" id="regButton" class="w-100 btn btn-primary p-2">
+            <button type = "submit" id="regButton" class="w-100 btn btn-primary p-2">
               Записаться
             </button>
           </div>

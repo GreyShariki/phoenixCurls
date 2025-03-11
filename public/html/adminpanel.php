@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -49,14 +52,14 @@
               <a
                 class="nav-link text-main m-0"
                 aria-current="page"
-                href="/index.html"
+                href="../../index.html"
                 >Главная</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
               <a
                 class="nav-link text-main m-0"
-                href="public/html/appointment.html"
+                href="./appointment.php"
                 >Записаться</a
               >
             </li>
@@ -66,7 +69,7 @@
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.php">Профиль</a>
+              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input

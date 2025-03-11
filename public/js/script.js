@@ -44,9 +44,15 @@ const show = (elementShow, elementHide) => {
 document.addEventListener("DOMContentLoaded", function () {
   const serviceSelect = document.getElementById("serviceSelect");
   const priceDisplay = document.getElementById("priceDisplay");
+  const hiddenInput = document.getElementById("hiddenPrice");
   serviceSelect.addEventListener("change", function () {
     const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
     const price = selectedOption.getAttribute("data-price");
+    hiddenInput.value = price || "0";
     priceDisplay.textContent = price || "0";
   });
 });
+const isAutentificated = false;
+const setAuth = () => {
+  isAutentificated = true;
+};

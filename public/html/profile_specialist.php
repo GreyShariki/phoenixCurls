@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -18,7 +21,7 @@
     <title>PhoenixCurls</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg p-0 navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg p-0 navbar-light bg-light">
       <div class="container-fluid mb-0">
         <a
           class="navbar-brand navbrand align-items-center d-flex pb-0 mb-0 pe-5"
@@ -54,7 +57,9 @@
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./appointment.php"
+              <a
+                class="nav-link text-main m-0"
+                href="./appointment.php"
                 >Записаться</a
               >
             </li>
@@ -83,119 +88,45 @@
     </nav>
     <header><p class="text-main p-3">Curls lives matter</p></header>
     <main class="p-5">
-      <div class="container-fluid row justify-content-center">
-        <form
-          class="bg-light col-4 p-3 row justify-content-center d-block"
-          method="post"
-          action="../../server/registration.php"
-          id="register"
-        >
-          <legend>Регистрация</legend>
-          <div class="mb-4">
-            <input
-              name="email"
-              class="form-control reg"
-              type="email"
-              placeholder="Email"
-              oninput="isChange()"
-            />
-          </div>
-          <div class="mb-4">
-            <input
-              name="fname"
-              class="form-control reg"
-              type="text"
-              placeholder="Имя"
-              oninput="isChange()"
-            />
-          </div>
-          <div class="mb-4">
-            <input
-              name="lname"
-              class="form-control reg"
-              type="text"
-              placeholder="Фамилия"
-              oninput="isChange()"
-            />
-          </div>
-          <div class="mb-4">
-            <input
-              name="password"
-              id="password"
-              class="form-control reg"
-              type="password"
-              placeholder="Пароль"
-              oninput="isChange()"
-            />
-          </div>
-          <div class="mb-4">
-            <input
-              name="repPassword"
-              id="repPassword"
-              class="form-control reg"
-              type="password"
-              placeholder="Повторите пароль"
-              oninput="isChange()"
-            />
-          </div>
-          <div class="mb-4">
-            <button
-              onclick="setAuth()"
-              id="regButton"
-              class="w-100 btn btn-primary p-2 disabled"
-            >
-              Зарегестрироваться
-            </button>
-          </div>
-          <div>
-            <button
-              onclick="loginShow()"
-              type="submit"
-              class="btn w-100 btn-primary p-2"
-            >
-              У меня уже есть аккаунт
-            </button>
-          </div>
-        </form>
-        <form
-          class="bg-light col-4 p-3 row justify-content-center d-none"
-          method="post"
-          action="../../server/auth.php"
-          id="login"
-        >
-          <legend>Вход</legend>
-          <div class="mb-4">
-            <input
-              name="email"
-              class="form-control"
-              type="email"
-              placeholder="Email"
-            />
-          </div>
+   
+      <div class = "container row">
+      <h5>Ваши записи</h5>
+        <div class= "col-6 col-md-2">
+            <div class = "list-group">
+                    <button type = "button" class = "list-group-item list-group-item-action">Предстоящие</button>
+                    <button type = "button" class = "list-group-item list-group-item-action">Прошедшие</button>
+            </div>
+        </div>
+        <div class = "col-10 col-md-8">
+            <table class = "table table-light table-striped w-100">
+                <thead>
+                    <tr>
+                        <th class = "h6" scope = "col">Дата</th>
+                        <th class = "h6" scope = "col">Время</th>
+                        <th class = "h6" scope = "col">Тип услуги</th>
+                        <th class = "h6" scope = "col">Специалист</th>
+                        <th class = "h6" scope = "col">Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    require_once("../../server/db.php");
+                    $fname = $_SESSION['fname'];
+                    $sql = "SELECT * from applications where specialist = '$fname'";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()){
+                        echo "<tr><td>".$row["date"]."</td>
+                        <td>".$row["time"]."</td>
+                        <td>".$row["type_of_service"]."</td>
+                        <td>".$row["specialist"]."</td>
+                        <td>".$row["price"]." р.</td></tr>";
 
-          <div class="mb-4">
-            <input
-              name="password"
-              class="form-control"
-              type="password"
-              placeholder="Пароль"
-            />
-          </div>
-          <div class="mb-4">
-            <button type="submit" class="w-100 btn btn-primary p-2">
-              Войти
-            </button>
-          </div>
-          <div>
-            <button
-              onclick="registrationShow()"
-              type="button"
-              class="btn w-100 btn-primary p-2"
-            >
-              У меня ещё нет аккаунта
-            </button>
-          </div>
-        </form>
+                    };
+
+                    ?>
+                </tbody>
+            </table>
+        </div>
       </div>
     </main>
     <footer
@@ -233,5 +164,4 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"
   ></script>
-  <script src="../js/script.js"></script>
 </html>
