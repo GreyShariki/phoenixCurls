@@ -12,13 +12,13 @@ if ($res){
     setcookie("user_id", $row["id"], time() + 3600, "/");
     setcookie("role", $row["role"], time() + 3600, "/");
     if ($row['role'] == "specialist"){
-        header('location:http://dima2005/public/html/profile_specialist.php');
+        header('location:../public/html/profile_specialist.php');
     };
     if ($row['role'] == "admin"){
-        header('location:http://dima2005/public/html/adminpanel.php');
+        header('location:../public/html/adminpanel.php');
     };
     if ($row['role'] == "user"){
-        header('location:http://dima2005/public/html/profile.php');
+        header('location:../public/html/profile.php');
     };
 } else {
     echo "error";
