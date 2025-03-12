@@ -79,9 +79,14 @@ if ($_COOKIE['role'] === "admin"){
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
-            <form class="d-flex d-flex align-items-center">
+            <form
+              action="galery.php?nocache=<?php echo time(); ?>"
+              method="get"
+              class="d-flex align-items-center"
+            >
               <input
                 class="form-control me-2"
+                name="search"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Поиск"
@@ -98,7 +103,7 @@ if ($_COOKIE['role'] === "admin"){
     <main class="p-5">
       <div class="container-fluid row justify-content-center">
         <form
-          class="bg-light col-4 p-3 row justify-content-center d-block"
+          class="bg-light col-11 col-md-4 p-3 row justify-content-center d-block"
           method="post"
           action="../../server/registration.php"
           id="register"
@@ -163,7 +168,7 @@ if ($_COOKIE['role'] === "admin"){
           <div>
             <button
               onclick="loginShow()"
-              type="submit"
+              type = "button"
               class="btn w-100 btn-primary p-2"
             >
               У меня уже есть аккаунт
@@ -171,7 +176,7 @@ if ($_COOKIE['role'] === "admin"){
           </div>
         </form>
         <form
-          class="bg-light col-4 p-3 row justify-content-center d-none"
+          class="bg-light col-11 col-md-4 p-3 row justify-content-center d-none"
           method="post"
           action="../../server/auth.php"
           id="login"
@@ -202,7 +207,6 @@ if ($_COOKIE['role'] === "admin"){
           <div>
             <button
               onclick="registrationShow()"
-              type="button"
               class="btn w-100 btn-primary p-2"
             >
               У меня ещё нет аккаунта

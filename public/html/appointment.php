@@ -74,9 +74,14 @@ if (!$_COOKIE["user_id"]){
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-main m-0" href="./auth.php">Профиль</a>
             </li>
-            <form class="d-flex d-flex align-items-center">
+            <form
+              action="galery.php?nocache=<?php echo time(); ?>"
+              method="get"
+              class="d-flex align-items-center"
+            >
               <input
                 class="form-control me-2"
+                name="search"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Поиск"
@@ -93,7 +98,7 @@ if (!$_COOKIE["user_id"]){
     <main class="p-5">
       <div class="container-fluid row justify-content-center">
         <form
-          class="bg-light col-4 p-3 row justify-content-center d-block"
+          class="bg-light col-11 col-md-4 p-3 row justify-content-center d-block"
           method="post"
           action="../../server/appointment.php"
           id="register"

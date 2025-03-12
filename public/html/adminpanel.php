@@ -69,9 +69,14 @@
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
-            <form class="d-flex d-flex align-items-center">
+            <form
+              action="galery.php?nocache=<?php echo time(); ?>"
+              method="get"
+              class="d-flex align-items-center"
+            >
               <input
                 class="form-control me-2"
+                name="search"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Поиск"
@@ -88,22 +93,24 @@
     <main class="p-5">
    
       <div class = "container row">
-        <div class= "col-6 col-md-2">
+        <div class= "col-8 col-md-2 mb-5">
             <div class = "list-group">
                     <button type = "button" onclick = "show('Пользователи','Записи')" class = "list-group-item list-group-item-action">Пользователи</button>
                     <button type = "button" onclick = "show('Записи', 'Пользователи')" class = "list-group-item list-group-item-action">Записи</button>
+                    <a href = "../../server/destroy.php" class = "list-group-item list-group-item-action">Выйти</a>
+
             </div>
         </div>
-        <div class = "col-10 col-md-8">
-        <table id = "Пользователи" class = "table table-light table-striped w-100 d-block">
+        <div class = "col-12 col-md-8 " style="overflow-x: auto;">
+        <table id = "Пользователи" class = "table col-6 table-light table-striped w-100 d-block">
                 <thead>
                     <tr>
-                        <th class = "h6" scope = "col">id</th>
-                        <th class = "h6" scope = "col">Имя</th>
-                        <th class = "h6" scope = "col">Фамилия</th>
-                        <th class = "h6" scope = "col">Email</th>
-                        <th class = "h6" scope = "col">Роль</th>
-                        <th class = "h6" scope = "col"></th>
+                        <th class = "h6" scope = "col-4">id</th>
+                        <th class = "h6" scope = "col-4">Имя</th>
+                        <th class = "h6" scope = "col-4">Фамилия</th>
+                        <th class = "h6" scope = "col-4">Email</th>
+                        <th class = "h6" scope = "col-4">Роль</th>
+                        <th class = "h6" scope = "col-4"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -192,6 +199,37 @@
                     ?>
                 </tbody>
             </table>
+            <form
+          class="bg-light col-11 col-md-4 p-3 row justify-content-center d-block"
+          method="post"
+          action="../../server/upload.php"
+        >
+          <legend>Обновить галерею</legend>
+          <div class="mb-4">
+            <input
+              name="name"
+              class="form-control"
+              type="text"
+              placeholder="Стилист"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              name="image"
+              class="form-control"
+              type="text"
+              placeholder="Название изображения"
+            />
+          </div>
+          <div class="mb-4">
+            <button
+              type = "submit"
+              class="w-100 btn btn-primary p-2"
+            >
+              Добавить
+            </button>
+          </div>
+        </form>
         </div>
       </div>
     </main>

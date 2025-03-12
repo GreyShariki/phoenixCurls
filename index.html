@@ -70,9 +70,14 @@
                 >Профиль</a
               >
             </li>
-            <form class="d-flex align-items-center">
+            <form
+              action="public/html/galery.php?nocache=<?php echo time(); ?>"
+              method="get"
+              class="d-flex align-items-center"
+            >
               <input
                 class="form-control me-2"
+                name="search"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Поиск"

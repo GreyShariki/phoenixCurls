@@ -68,9 +68,14 @@
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
-            <form class="d-flex d-flex align-items-center">
+            <form
+              action="galery.php?nocache=<?php echo time(); ?>"
+              method="get"
+              class="d-flex align-items-center"
+            >
               <input
                 class="form-control me-2"
+                name="search"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Поиск"
@@ -88,22 +93,22 @@
    
       <div class = "container row">
       <h5>Ваши записи</h5>
-        <div class= "col-6 col-md-2">
-            <div class = "list-group">
+        <div class= "col-8 col-md-2 mb-5 w-auto">
+            <div class = "list-group w-100">
                     <button type = "button" class = "list-group-item list-group-item-action">Предстоящие</button>
                     <button type = "button" class = "list-group-item list-group-item-action">Прошедшие</button>
                     <a href = "../../server/destroy.php" class = "list-group-item list-group-item-action">Выйти</a>
             </div>
         </div>
-        <div class = "col-10 col-md-8">
+        <div class = "col-10 col-md-8" style="overflow-x: auto;">
             <table class = "table table-light table-striped w-100">
                 <thead>
                     <tr>
-                        <th class = "h6" scope = "col">Дата</th>
-                        <th class = "h6" scope = "col">Время</th>
-                        <th class = "h6" scope = "col">Тип услуги</th>
-                        <th class = "h6" scope = "col">Специалист</th>
-                        <th class = "h6" scope = "col">Цена</th>
+                        <th class = "h6" scope = "col-4">Дата</th>
+                        <th class = "h6" scope = "col-4">Время</th>
+                        <th class = "h6" scope = "col-4">Тип услуги</th>
+                        <th class = "h6" scope = "col-4">Специалист</th>
+                        <th class = "h6" scope = "col-4">Цена</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -66,9 +66,10 @@
             <li class="nav-item d-flex align-items-center">
               <a class="nav-link text-main m-0" href="./auth.php">Профиль</a>
             </li>
-            <form class="d-flex d-flex align-items-center">
+            <form method = "get" class="d-flex d-flex align-items-center">
               <input
                 class="form-control me-2"
+                name = "search"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Поиск"
@@ -86,34 +87,21 @@
       <div class="container">
         <h4 class="mt-5">Галерея</h4>
         <div class="row justify-content-between">
-          <div class="col-lg-2 col-md-3 col-10 col-sm-4 bg-light me-5 p-0 mb-3">
+          <?php
+          require_once('../../server/db.php');
+          $search = $_GET['search'];
+          $sql = "SELECT * FROM galery where specialist like '%$search%'";
+          $response = $conn->query($sql);
+          while ($row = $response->fetch_assoc()){
+            echo '<div class="col-lg-2 col-md-3 col-10 col-sm-4 bg-light me-5 p-0 mb-3">
             <img
-              src="../img/galery.jpg"
+              src="../img/'.$row["image"].'"
               class="img-fluid img-responsive rounded"
             />
-            <h6 class="text-center p-2 rounded">Стилист: Д. Голяшов</h6>
-          </div>
-          <div class="col-lg-2 col-md-3 col-10 col-sm-4 bg-light me-5 p-0 mb-3">
-            <img
-              src="../img/galery.jpg"
-              class="img-fluid img-responsive rounded"
-            />
-            <h6 class="text-center p-2 rounded">Стилист: Д. Голяшов</h6>
-          </div>
-          <div class="col-lg-2 col-md-3 col-10 col-sm-4 bg-light me-5 p-0 mb-3">
-            <img
-              src="../img/galery.jpg"
-              class="img-fluid img-responsive rounded"
-            />
-            <h6 class="text-center p-2 rounded">Стилист: Д. Голяшов</h6>
-          </div>
-          <div class="col-lg-2 col-md-3 col-10 col-sm-4 bg-light me-5 p-0 mb-3">
-            <img
-              src="../img/galery.jpg"
-              class="img-fluid img-responsive rounded"
-            />
-            <h6 class="text-center p-2 rounded">Стилист: Д. Голяшов</h6>
-          </div>
+            <h6 class="text-center p-2 rounded">Стилист: '.$row["specialist"].'</h6>
+          </div>';
+          };
+          ?>
         </div>
       </div>
     </main>
