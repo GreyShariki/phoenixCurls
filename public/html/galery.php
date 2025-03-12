@@ -59,7 +59,7 @@
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0 active" href="./galery.html"
+              <a class="nav-link text-main m-0 active" href="./galery.php"
                 >Галерея</a
               >
             </li>
