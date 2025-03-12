@@ -1,7 +1,8 @@
-<?php
-if(!$_SESSION['user_id']){
-  header("location:http://dima2005/public/html/auth.html");
+<?php 
+if (!$_COOKIE["user_id"]){
+  header("location:./auth.php");
 };
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -60,18 +61,18 @@ if(!$_SESSION['user_id']){
             </li>
             <li class="nav-item d-flex align-items-center">
               <a
-                class="nav-link text-main m-0"
+                class="nav-link text-main m-0 active"
                 href="./appointment.php"
                 >Записаться</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0 active" href="./galery.html"
+              <a class="nav-link text-main m-0 " href="./galery.html"
                 >Галерея</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
+              <a class="nav-link text-main m-0" href="./auth.php">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input
@@ -129,7 +130,7 @@ if(!$_SESSION['user_id']){
   $sql = "SELECT * FROM services";
   $res = $conn->query($sql);
   while ($row = $res->fetch_assoc()) {
-    echo '<option value="' . $row["id"] . '" data-price="' . $row["price"] . '">' . $row["title"] . '</option>';
+    echo '<option value = ' . $row["title"] . ' data-price="' . $row["price"] . '">' . $row["title"] . '</option>';
   }
   ?>
 </select>

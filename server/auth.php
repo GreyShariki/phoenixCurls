@@ -9,6 +9,8 @@ if ($res){
     $row = $res->fetch_assoc();
     $_SESSION['user_id'] = $row["id"];
     $_SESSION['fname'] = $row['fname'];
+    setcookie("user_id", $row["id"], time() + 3600, "/");
+    setcookie("role", $row["role"], time() + 3600, "/");
     if ($row['role'] == "specialist"){
         header('location:http://dima2005/public/html/profile_specialist.php');
     };

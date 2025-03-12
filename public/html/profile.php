@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-session_start();
-?>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -64,12 +61,12 @@ session_start();
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0 active" href="./galery.html"
+              <a class="nav-link text-main m-0 " href="./galery.html"
                 >Галерея</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
+              <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input
@@ -112,7 +109,8 @@ session_start();
                 <tbody>
                     <?php
                     require_once("../../server/db.php");
-                    $sql = "SELECT * from applications";
+                    $id = $_COOKIE['user_id'];
+                    $sql = "SELECT * from applications where user_id = '$id'";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()){
                         echo "<tr><td>".$row["date"]."</td>

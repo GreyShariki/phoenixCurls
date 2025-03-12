@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -64,12 +62,12 @@ session_start();
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0 active" href="./galery.html"
+              <a class="nav-link text-main m-0 " href="./galery.html"
                 >Галерея</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
+              <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input
@@ -112,18 +110,18 @@ session_start();
                     
                     <?php
                     require_once("../../server/db.php");
-                    $id = $_GET['id'];
-                    $role = $_GET["role"];
-                    if ($role === "user"){
-                        $sql = "UPDATE users SET role = 'specialist' where id = $id";
+                    $user_id = $_GET['user_id'];
+                    $user_role = $_GET["user_role"];
+                    if ($user_role === "user"){
+                        $sql = "UPDATE users SET role = 'specialist' where id = $user_id";
                         $conn->query($sql);
                     };
-                    if ($role === 'specialist'){
-                        $sql = "UPDATE users SET role = 'admin' where id = $id";
+                    if ($user_role === 'specialist'){
+                        $sql = "UPDATE users SET role = 'admin' where id = $user_id";
                         $conn->query($sql);
                     };
-                    if ($role === 'admin'){
-                        $sql = "UPDATE users SET role = 'user' where id = $id";
+                    if ($user_role === 'admin'){
+                        $sql = "UPDATE users SET role = 'user' where id = $user_id";
                         $conn->query($sql);
                     };
                     
@@ -137,12 +135,12 @@ session_start();
                         <td>".$row["lname"]."</td>
                         <td>".$row["email"]."</td>
                         <td>".$row["role"]."</td>
-                        <input name = 'id' type='hidden' value = ".$row['id'].">
-                        <input name = 'role' type='hidden' value = ".$row['role'].">
-                        <td><button type = 'submit' class = 'btn-primary btn'>Сменить роль</button></td></tr>";
+                        <input name = 'user_id' type='hidden' value = ".$row['id'].">
+                        <input name = 'user_role' type='hidden' value = ".$row['role'].">
+                        <td><button type = 'submit' class = 'btn-primary btn'>Сменить роль</button></td></tr></form>";
                     };
                     ?>
-                    </form>
+                    
                 </tbody>
             </table>
             <table id = "Записи" class = "table table-light table-striped w-100 d-none">

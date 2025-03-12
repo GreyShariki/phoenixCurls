@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<?php
+if ($_COOKIE['role'] === "user"){
+  header("location:./profile.php");
+};
+if ($_COOKIE['role'] === "specialist"){
+  header("location:./profile_specialist.php");
+};
+if ($_COOKIE['role'] === "admin"){
+  header("location:./adminpanel.php");
+};
+
+
+?>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -59,12 +72,12 @@
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0 active" href="./galery.html"
+              <a class="nav-link text-main m-0 " href="./galery.html"
                 >Галерея</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
+              <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input

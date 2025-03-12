@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<?php
-session_start();
-?>
+
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -64,12 +62,12 @@ session_start();
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0 active" href="./galery.html"
+              <a class="nav-link text-main m-0 " href="./galery.html"
                 >Галерея</a
               >
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a class="nav-link text-main m-0" href="./auth.html">Профиль</a>
+              <a class="nav-link text-main m-0 active" href="./auth.php">Профиль</a>
             </li>
             <form class="d-flex d-flex align-items-center">
               <input
@@ -95,6 +93,7 @@ session_start();
             <div class = "list-group">
                     <button type = "button" class = "list-group-item list-group-item-action">Предстоящие</button>
                     <button type = "button" class = "list-group-item list-group-item-action">Прошедшие</button>
+                    <a href = "../../server/destroy.php" class = "list-group-item list-group-item-action">Выйти</a>
             </div>
         </div>
         <div class = "col-10 col-md-8">
