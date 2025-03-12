@@ -115,10 +115,14 @@
                 <tbody>
                     <?php
                     require_once("../../server/db.php");
-                    $fname = $_SESSION['fname'];
-                    $sql = "SELECT * from applications where specialist = '$fname'";
+                    $user_id = $_COOKIE["user_id"];
+                    $sql = "SELECT * from applications";
+                    $sql1 = "SELECT * from users where id = '$user_id'";
+                    $response = $conn->query($sql1);
                     $result = $conn->query($sql);
+                    $rowUser = $response->fetch_assoc();
                     while ($row = $result->fetch_assoc()){
+                      if($rowUser['fname'] == $row["specialist"])
                         echo "<tr><td>".$row["date"]."</td>
                         <td>".$row["time"]."</td>
                         <td>".$row["type_of_service"]."</td>
